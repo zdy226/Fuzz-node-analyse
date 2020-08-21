@@ -14,7 +14,9 @@ export default {
   },
   methods: {
     initBar () {
+      // 初始化 echarts 图表
       const myEcharts = this.$echarts.init(document.getElementById('myChart'));
+      // 增加的定义的app 
       const app = {};
       var posList = [
         'left', 'right', 'top', 'bottom',
