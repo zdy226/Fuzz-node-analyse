@@ -312,82 +312,115 @@ export default {
         height: 100%;
     }
 
-    @keyframes fangda {
+    @keyframes shanshuo {
       75% {
         width:5px;
         height: 5px;
-        transform:  translate(0) scale(1);
-        opacity: 0;
+        /* transform:  translate(0) scale(1); */
+        opacity: 1;
       }
       100% {
         width: 5px;
         height: 5px;
-        transform:  translate(100) scale(2);
-        opacity: 1;
+        /* transform:  translate(100) scale(2); */
+        opacity: 0;
       }
     }
+    @-webkit-keyframes shanshuo{  
+    0%{  
+        width:5px;
+        height: 5px;
+        transform:  translate(0) scale(1);
+        opacity: 0;  
+    }  
+    100%{  
+        width: 5px;
+        height: 5px;
+        transform:  translate(100) scale(2);
+        opacity: 1;  
+    }  
+}  
     .quan {
-      width: 5px;
-      height: 5px;
-      background: yellow;
-      box-shadow: 0 0 5px yellow;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 90%;
-      animation: fangda 4s linear infinite;
-      animation-delay: 2s;
+        width: 5px;
+        height: 5px;
+        background: yellow;
+        box-shadow: 0 0 5px yellow;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 90%;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
+        animation-delay: 2s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
 
     .quan0 {
-            width: 5px;
-            height: 5px;
-            background: yellow;
-            box-shadow: 0 0 5px yellow;
-            border-radius: 50%;
-            position: absolute;
-            top: 55%;
-            left: 45%;
-            animation: fangda 4s linear infinite;
-            animation-delay: 4s;
-        }
+        width: 5px;
+        height: 5px;
+        background: yellow;
+        box-shadow: 0 0 5px yellow;
+        border-radius: 50%;
+        position: absolute;
+        top: 55%;
+        left: 45%;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        animation-delay: 4s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
+    }
     .quan1 {
-      width: 5px;
-      height: 5px;
-      background: yellow;
-      box-shadow: 0 0 5px yellow;
-      border-radius: 50%;
-      position: absolute;
-      top: 30%;
-      left: 30%;
-      animation: fangda 4s linear infinite;
-      animation-delay: 6s;
+        width: 5px;
+        height: 5px;
+        background: yellow;
+        box-shadow: 0 0 5px yellow;
+        border-radius: 50%;
+        position: absolute;
+        top: 30%;
+        left: 30%;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
+        animation-delay: 6s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
 
     .quan2 {
-      width: 5px;
-      height: 5px;
-      background: yellow;
-      box-shadow: 0 0 5px yellow;
-      border-radius: 50%;
-      position: absolute;
-      top: 30%;
-      left: 70%;
-      animation: fangda 4s linear infinite;
-      animation-delay: 8s;
+        width: 5px;
+        height: 5px;
+        background: yellow;
+        box-shadow: 0 0 5px yellow;
+        border-radius: 50%;
+        position: absolute;
+        top: 30%;
+        left: 70%;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
+        animation-delay: 8s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
 
     .quan3 {
-      width: 5px;
-      height: 5px;
-      background: yellow;
-      box-shadow: 0 0 5px yellow;
-      border-radius: 50%;
-      position: absolute;
-      top: 60%;
-      left: 30%;
-      animation: fangda 4s linear infinite;
-      animation-delay: 10s;
+        width: 5px;
+        height: 5px;
+        background: yellow;
+        box-shadow: 0 0 5px yellow;
+        border-radius: 50%;
+        position: absolute;
+        top: 60%;
+        left: 30%;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
+        animation-delay: 10s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     
     .quan4 {
@@ -399,8 +432,12 @@ export default {
         position: absolute;
         top: 90%;
         left: 60%;
-        animation: fangda 4s linear infinite;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
         animation-delay: 12s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     .quan5 {
         width: 5px;
@@ -411,8 +448,12 @@ export default {
         position: absolute;
         top: 59%;
         left: 32%;
-        animation: fangda 4s linear infinite;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
         animation-delay: 14s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     .quan6 {
         width: 5px;
@@ -423,8 +464,12 @@ export default {
         position: absolute;
         top: 50%;
         left: 96%;
-        animation: fangda 4s linear infinite;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
         animation-delay: 16s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     .quan7 {
         width: 5px;
@@ -435,8 +480,13 @@ export default {
         position: absolute;
         top: 70%;
         left: 58%;
-        animation: fangda 4s linear infinite;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
         animation-delay: 18s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     .quan8 {
         width: 5px;
@@ -447,8 +497,12 @@ export default {
         position: absolute;
         top: 45%;
         left: 62%;
-        animation: fangda 4s linear infinite;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
         animation-delay: 20s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     .quan9 {
         width: 5px;
@@ -459,8 +513,12 @@ export default {
         position: absolute;
         top: 30%;
         left: 50%;
-        animation: fangda 4s linear infinite;
+        animation: shanshuo 5s infinite ease-in-out;
+        -webkit-animation: shanshuo 5s infinite ease-in-out;
+        /* animation: shanshuo 4s linear infinite; */
         animation-delay: 6.6s;
+        -webkit-animation-fill-mode: both;  
+        animation-fill-mode: both; 
     }
     
 </style>
