@@ -47,23 +47,25 @@
 
         <el-col :span="4">
           <label style="height:15px;padding-right:5px;">工具</label>
-          <el-select multiple v-model="gongju_optionsAll" @remove-tag="handRemove" >
+          <el-select multiple v-model="gongju_optionsAll" @remove-tag="handRemove">
             <el-option v-for="(item, index) in gongju_options" :key="index" :value="item">{{ item }}</el-option>
           </el-select>
         </el-col>
       </div>
     </el-row>
     <div style="margin-top:20px;">
-      <el-tabs type="border-card" v-model="tabs_name" @tab-click="handleClick">
+      <el-tabs type="border-card" v-model="tabs_name" @tab-click="handleClick ">
         <el-tab-pane
           :name="item"
           v-for="(item,index) in gongju_optionsAll"
           :key="index"
           :label="item"
-        >
-          <!-- <span style="background:blue">11111</span> -->
-        </el-tab-pane>
-        <div id="MyechartsOne" style="height:400px;margin-top:20px;"></div>       
+        ></el-tab-pane>
+        <div id="MyechartsOne" style="height:400px;margin-top:20px;" v-show="showOne"></div>
+        <!-- <div id="MyechartsOne" style="height:400px;margin-top:20px;" v-show="showOne"></div> -->
+        <div id="MyechartsOne1" style="height:400px;margin-top:20px;" v-show="showOne"></div>
+        <div id="MyechartsOne2" style="height:400px;margin-top:20px;" v-show="showOne"></div>
+        <div id="MyechartsOne3" style="height:400px;margin-top:20px;" v-show="showOne"></div>
       </el-tabs>
     </div>
     <!-- <div id="MyechartsOne" style="height:400px;margin-top:20px;"></div> -->
@@ -264,6 +266,12 @@ export default {
   props: {},
   data() {
     return {
+      showData: [
+        { showOne: true },
+        { showOne: false },
+        { showOne: false },
+        { showOne: false },
+      ],
       EMUI_options: [],
       chanpin_options: [],
       chanpin_optionsAll: [],
@@ -524,16 +532,27 @@ export default {
   },
 
   methods: {
-    handleTabBranch(index) {
+    // changeStatus(tab,event){
+    //   let a = document.getElementById("MyechartsOne")
+    //   console.log(123);
+    //   for (let i = 0; i < this.show.length; i++) {
 
-    },
-    handRemove(){
-      console.log(111);
-      let MyechartsOne = this.$echarts.init(
-        document.getElementById("MyechartsOne")
-      );
-      MyechartsOne.dispose();
-    },
+    //     if(j == i){
+    //        this.show[i] = true;
+    //     }else{
+    //       this.show[i] = false;
+    //     }
+    //   }
+    // },
+
+    // handRemove(){
+    //   console.log(111);
+    //   let MyechartsOne = this.$echarts.init(
+    //     document.getElementById("MyechartsOne")
+    //   );
+    //   MyechartsOne.dispose();
+    // },
+
     // ceateEchart(data){
     //   let MyechartsOne = this.$echarts.init(
     //     document.getElementById("MyechartsOne")
@@ -544,23 +563,33 @@ export default {
     //   });
     //    MyechartsOne.setOption(data)
     // },
-    handleClick: function (tab, event) {
-        // let _index = tab.index
-        // for (let index = 0; index < array.length; index++) {
-        //  if (_index == iindex) {
-        //   ceateEchart(array[index].data)
-        //  }
-        // }
 
-        let MyechartsOne = this.$echarts.init(
-          console.log(tab)
-        )
-        MyechartsOne.dispose();
-        // console.log(tab),
-        this.drawLine(),
-        console.log(event)
+    handleClick: function (tab, event) {
+      // this.drawLine()
+      console.log(event)
         // aa = event.target.getAttribute('id')
-        console.log(event.target.getAttribute('id'))  //获取到当前元素的id
+      console.log(event.target.getAttribute('id'))  //获取到当前元素的id
+
+      let curentIndex = tab.index;
+      for (let i = 0; i < this.showData.length; i++) {
+        console.log(this.showData[i],12345678);
+        if (curentIndex == i) {
+          this.showData[i].showOne= true;
+          this.drawLine();
+          console.log(this.showData[i], 456454);
+        } else {
+          this.showData[i].showOne = false;
+        }
+        console.log(this.showData);
+      }
+
+      // let MyechartsOne = this.$echarts.init(
+      //   document.getElementById("MyechartsOne")
+      // );
+      // MyechartsOne.dispose();
+      // console.log(tab);
+
+      // aa = event.target.getAttribute('id')
     },
     headClass() {
       //表头居中显示
@@ -759,15 +788,12 @@ export default {
       let MyechartsOne = this.$echarts.init(
         document.getElementById("MyechartsOne")
       );
-      // let PieChartsOne = this.$echarts.init(
-      //   document.getElementById("PieChartsOne")
-      // );
       //绘制图表
       window.addEventListener("resize", () => {
         MyechartsOne.resize();
         // PieChartsOne.resize();
       });
-      MyechartsOne.setOption({
+           MyechartsOne.setOption({
         title: {
           text: "各领域应用统计",
           top: "top",
@@ -900,87 +926,9 @@ export default {
           },
         ],
       });
-
-      // PieChartsOne.setOption({
-      //   backgroundColor: "rgba(0,0,0,0)",
-      //   // title:{
-      //   //     text:'问题类型分布图',
-      //   //     left:'center',
-      //   // },
-      //   tooltip: {
-      //     trigger: "item",
-      //   },
-      //   legend: {
-      //     data: [
-      //       "java.lang.OutOfMemoryError",
-      //       "NullPoniterException",
-      //       "BadParcelableException",
-      //       "SecurityException",
-      //     ],
-      //     orient: "vertical",
-      //     x: "left",
-      //     y: "center",
-      //   },
-      //   // 展示的数据饼状图
-      //   series: [
-      //     {
-      //       name: "",
-      //       type: "pie",
-      //       radius: "50%",
-      //       center: ["50%", "50%"],
-      //       selectedMode: "single",
-      //       minAngle: 5,
-      //       itemStyle: {
-      //         normal: {
-      //           label: {
-      //             show: true,
-      //             formatter: "{b} : {c} ({d}%)",
-      //           },
-      //           labelLine: {
-      //             show: true,
-      //           },
-      //           color: function (params) {
-      //             let colorList = [
-      //               "#29B2E5",
-      //               "#A4CD32",
-      //               "#FD9B20",
-      //               "#F366B3",
-      //               "#5C6BC0",
-      //               "#C4CCD3",
-      //               "#4BABDE",
-      //               "#FFDE76",
-      //             ];
-      //             return colorList[params.dataIndex];
-      //           },
-      //         },
-      //       },
-      //       data: [
-      //         {
-      //           name: "java.lang.OutOfMemoryError",
-      //           value: 10,
-      //         },
-      //         {
-      //           name: "NullPoniterException",
-      //           value: 1,
-      //         },
-      //         {
-      //           name: "BadParcelableException",
-      //           value: 2,
-      //         },
-      //         {
-      //           name: "SecurityException",
-      //           value: 5,
-      //         },
-      //       ],
-      //     },
-      //   ],
-      // });
     },
     drawLine2() {
       //基于准备好的dom，初始化echarts实例
-      // let MyechartsOne = this.$echarts.init(
-      //   document.getElementById("MyechartsOne")
-      // );
       let PieChartsOne = this.$echarts.init(
         document.getElementById("PieChartsOne")
       );
@@ -989,140 +937,6 @@ export default {
         // MyechartsOne.resize();
         PieChartsOne.resize();
       });
-      // MyechartsOne.setOption({
-      //   title: {
-      //     text: "各领域应用统计",
-      //     top: "top",
-      //   },
-      //   tooltip: {
-      //     trigger: "axis",
-      //   },
-      //   legend: {
-      //     data: ["工具已识别节点", "已测试节点"],
-      //     // data: this.chartData.barData.gongju_optionsAll,
-      //     x: "center",
-      //     y: "bottom",
-      //   },
-      //   grid: {
-      //     left: "5%",
-      //     right: "5%",
-      //     bottom: "10%",
-      //     top: "10%",
-      //     containLabel: true,
-      //   },
-      //   xAxis: [
-      //     {
-      //       type: "category",
-      //       boundaryGap: true,
-      //       // data: ["苹果","华为","三星","OPPO","锤子"],
-      //       data: [
-      //         "智慧化",
-      //         "突进社交",
-      //         "os",
-      //         "系统应用",
-      //         "应用平台",
-      //         "互联互通",
-      //       ],
-      //       // data: this.chartData.barData.fieldName,
-      //       nameLocation: "end",
-      //       axisTick: {
-      //         show: false,
-      //       },
-      //       axisPointer: {
-      //         // type: "shadow",
-      //       },
-      //       axisTick: {
-      //         alignWithLable: true,
-      //       },
-      //       splitLine: {
-      //         show: false,
-      //       },
-      //       axisLabel: {
-      //         interval: 0,
-      //       },
-      //       axisLine: {
-      //         show: true,
-      //         lineStyle: {
-      //           opacity: 0.3,
-      //           color: "black",
-      //         },
-      //       },
-      //     },
-      //   ],
-      //   yAxis: {
-      //     show: true,
-      //     name: "",
-      //     interval: 5,
-      //     nameTextStyle: {
-      //       color: "#9B9B9B",
-      //       fontSize: 20,
-      //     },
-      //     position: "left",
-      //     type: "value",
-      //     axisLabel: {
-      //       show: true,
-      //       format: "normal",
-      //       textStyle: {
-      //         color: "#9B9B9B",
-      //       },
-      //     },
-      //     axisTick: {
-      //       show: true,
-      //     },
-      //     splitLine: {
-      //       show: true,
-      //     },
-      //     axisLine: {
-      //       show: true,
-      //       lineStyle: {
-      //         opacity: 0.3,
-      //         color: "black",
-      //       },
-      //     },
-      //   },
-      //   // 展示的数据柱状图
-      //   series: [
-      //     {
-      //       name: "已完成分析",
-      //       type: "bar",
-      //       barWidth: 30,
-      //       data: [10, 20, 30, 40, 50, 25],
-      //       yAxisIndex: 0,
-      //       itemStyle: {
-      //         color: "#29B2E5",
-      //         width: 5,
-      //       },
-      //       label: {
-      //         show: true,
-      //         format: "normal",
-      //       },
-      //       lineStyle: {
-      //         type: "solid",
-      //         width: 3,
-      //       },
-      //     },
-      //     {
-      //       name: "未完成分析",
-      //       type: "bar",
-      //       data: [20, 20, 30, 50, 25],
-      //       barWidth: 30,
-      //       yAxisIndex: 0,
-      //       itemStyle: {
-      //         color: "#A4CD32",
-      //         width: 5,
-      //       },
-      //       label: {
-      //         show: true,
-      //         format: "normal",
-      //       },
-      //       lineStyle: {
-      //         type: "solid",
-      //         width: 3,
-      //       },
-      //     },
-      //   ],
-      // });
-
       PieChartsOne.setOption({
         backgroundColor: "rgba(0,0,0,0)",
         // title:{
